@@ -50,7 +50,9 @@ func Run() {
 	//
 	// 	/* SELECT COUNT(*) FROM funcs WHERE func.className() = '' LIMIT 50000000 ORDER BY uses DESC*/
 	//
-	// SELECT deps FROM (SELECT * FROM funcs WHERE func.name() = 'inc_getAdsPriceLists' ) WHERE path.length() = 4
+	//
+	//
+	// SELECT * FROM funcs WHERE func.globals().contains(SELECT * FROM globals WHERE global.name() = 'CountryCode')
 	//
 	// 	/*
 	// 	SELECT * FROM funcs WHERE
@@ -103,7 +105,7 @@ func Run() {
 
 					f, err := os.OpenFile(name, os.O_RDONLY, 0777)
 					if err != nil {
-						return fmt.Errorf("can't opening file with database named %s.db: %v", execFlags.Name, err)
+						return fmt.Errorf("can't opening file with database named %s.db: %v\n", execFlags.Name, err)
 					}
 					defer f.Close()
 
@@ -145,7 +147,7 @@ func Run() {
 
 					f, err := os.OpenFile(name, os.O_RDONLY, 0777)
 					if err != nil {
-						return fmt.Errorf("can't opening file with database named %s.db: %v", openFlags.Name, err)
+						return fmt.Errorf("can't opening file with database named %s.db: %v\n", openFlags.Name, err)
 					}
 					defer f.Close()
 

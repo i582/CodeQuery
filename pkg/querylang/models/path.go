@@ -13,7 +13,7 @@ type IFuncArg interface {
 
 type IFuncCall interface {
 	Arg(index int64) IFuncArg
-	Args_() int64
+	Args() int64
 	File() string
 }
 

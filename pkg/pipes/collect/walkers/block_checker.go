@@ -64,6 +64,7 @@ func (b *BlockChecker) AfterEnterNode(n ir.Node) {
 			} else {
 				atomic.AddInt64(&globalVar.UseCount, 1)
 			}
+			curFunc.Globals.Add(globalVar)
 		}
 
 	case *ir.NewExpr:

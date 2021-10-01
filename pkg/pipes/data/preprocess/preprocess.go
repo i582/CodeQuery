@@ -80,8 +80,8 @@ func convertFunctionCalls(calls *symbols.FunctionCalls) []models.FuncCall {
 
 	for _, call := range calls.Calls {
 		res = append(res, models.FuncCall{
-			Pos:  convertPosition(call.Position),
-			Args: convertFunctionCallArgs(call.Args),
+			Pos:   convertPosition(call.Position),
+			Args_: convertFunctionCallArgs(call.Args),
 		})
 	}
 

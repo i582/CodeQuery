@@ -29,14 +29,14 @@ func GetTableFunctionsCallsRepr(f *models.FuncCallTable) string {
 
 		if f.NeedShowCol("args") {
 			var cellValue string
-			for _, arg := range call.Args {
+			for _, arg := range call.Args_ {
 				cellValue += splitText(arg.Value) + "\n"
 			}
 
 			r = append(r, &simpletable.Cell{Align: simpletable.AlignRight, Text: cellValue})
 		}
 		if f.NeedShowCol("args_count") {
-			r = append(r, &simpletable.Cell{Align: simpletable.AlignRight, Text: color.Gray.Sprint(len(call.Args))})
+			r = append(r, &simpletable.Cell{Align: simpletable.AlignRight, Text: color.Gray.Sprint(len(call.Args_))})
 		}
 		if f.NeedShowCol("file") {
 			r = append(r, &simpletable.Cell{Text: splitText(call.Pos.String())})

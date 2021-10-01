@@ -50,7 +50,7 @@ func (g Globals) Contains(globals models.IGlobals) bool {
 		return false
 	}
 
-	if g.Count() < globals.Count() {
+	if g.Count() <= globals.Count() {
 		for _, global := range g.ByID {
 			if globals.Has(global) {
 				return true
@@ -76,17 +76,41 @@ type GlobalTable struct {
 	Data []Global
 }
 
-func (t *GlobalTable) Iterate(f func(fun models.IGlobal)) {
-	for _, d := range t.Data {
-		f(d)
-	}
-}
-
-func (t *GlobalTable) Length() int64 {
+func (t GlobalTable) Count() int64 {
 	return int64(len(t.Data))
 }
 
-func (t *GlobalTable) NeedShowCol(name string) bool {
+func (t GlobalTable) Has(global models.IGlobal) bool {
+	for _, glob := range t.Data {
+		if glob.ID == global.Id() {
+			return true
+		}
+	}
+	return false
+}
+
+func (t GlobalTable) Contains(globals models.IGlobals) bool {
+	for _, glob := range t.Data {
+		if globals.Has(glob) {
+			return true
+		}
+	}
+	return false
+}
+
+func (t GlobalTable) Iterate(f func(fun models.IGlobal) bool) {
+	for _, d := range t.Data {
+		if !f(d) {
+			return
+		}
+	}
+}
+
+func (t GlobalTable) Length() int64 {
+	return int64(len(t.Data))
+}
+
+func (t GlobalTable) NeedShowCol(name string) bool {
 	for _, col := range t.Cols {
 		if col.IdName == name {
 			return true

@@ -67,16 +67,16 @@ type FuncCallArgs []FuncCallArg
 type FuncCall struct {
 	ID int64
 
-	Pos  Pos
-	Args FuncCallArgs
+	Pos   Pos
+	Args_ FuncCallArgs
 }
 
 func (c FuncCall) Arg(index int64) models.IFuncArg {
-	return c.Args[index]
+	return c.Args_[index]
 }
 
-func (c FuncCall) Args_() int64 {
-	return int64(len(c.Args))
+func (c FuncCall) Args() int64 {
+	return int64(len(c.Args_))
 }
 
 func (c FuncCall) File() string {

@@ -53,7 +53,7 @@ func RunQuery() *shell.Executor {
 				c.Args = append(c.Args, "<from file>")
 				content, err := os.ReadFile(filePath)
 				if err != nil {
-					c.Error(fmt.Sprintf("can't opening file with query named %s.db: %v", filePath, err))
+					c.Error(fmt.Sprintf("can't opening file with query named %s.db: %v\n", filePath, err))
 					return
 				}
 

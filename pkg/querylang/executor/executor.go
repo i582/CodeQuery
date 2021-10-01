@@ -348,24 +348,6 @@ func (e *Executor) EnterNode(n ast.Node) bool {
 			case "contains":
 				e.checkCountArgs(n, 1)
 
-				// Bad optimization
-				// if selectNode, ok := n.Args[0].(*ast.SelectExpr); ok {
-				// 	newSelect.Select = selectNode.Select
-				// 	newSelect.FromExpr = &ast.FromExpr{
-				// 		From: n.Variable,
-				// 	}
-				// 	newSelect.WhereExpr = selectNode.WhereExpr
-				// 	newSelect.WithExpr = selectNode.WithExpr
-				//
-				// 	globals := e.ExecSelect(newSelect).(models.IGlobals)
-				// 	e.value = globals.Count() > 0
-				//
-				// 	return false
-				// }
-				//
-				// Before: 94886170
-				// After:  215997608
-
 				globals := e.Exec(n.Args[0]).(models.IGlobals)
 				e.value = value.Contains(globals)
 			default:
@@ -402,7 +384,7 @@ func (e *Executor) EnterNode(n ast.Node) bool {
 
 			case "args":
 				e.checkCountArgs(n, 0)
-				e.value = value.Args_()
+				e.value = value.Args()
 
 			case "arg":
 				e.checkCountArgs(n, 1)

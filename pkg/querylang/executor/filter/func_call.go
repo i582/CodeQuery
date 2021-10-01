@@ -10,7 +10,7 @@ import (
 
 var defaultFuncCallTableCols = map[string]models.TableCol{
 	"args": {
-		Name:   "Args",
+		Name:   "Args_",
 		IdName: "args",
 	},
 	"file": {
@@ -18,7 +18,7 @@ var defaultFuncCallTableCols = map[string]models.TableCol{
 		IdName: "file",
 	},
 	"args_count": {
-		Name:   "Args count",
+		Name:   "Args_ count",
 		IdName: "args_count",
 	},
 }
@@ -47,8 +47,8 @@ func FuncCallsFilter(funcs models.FuncCalls, opts Opts) models.FuncCallTable {
 		var fun2 int64
 		switch opts.OrderField {
 		case "args_count":
-			fun1 = funcs[i].Args_()
-			fun2 = funcs[j].Args_()
+			fun1 = funcs[i].Args()
+			fun2 = funcs[j].Args()
 		case "file":
 			fun1Name := strings.ToLower(funcs[i].File())
 			fun2Name := strings.ToLower(funcs[j].File())
