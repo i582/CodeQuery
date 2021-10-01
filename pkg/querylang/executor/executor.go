@@ -297,8 +297,6 @@ func (e *Executor) fatal(format string, args ...interface{}) {
 	panic(fmt.Sprintf(format, args...))
 }
 
-// var newSelect = &ast.SelectExpr{}
-
 func (e *Executor) EnterNode(n ast.Node) bool {
 	switch n := n.(type) {
 	case *ast.SelectExpr:
