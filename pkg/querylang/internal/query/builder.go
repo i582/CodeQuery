@@ -279,19 +279,6 @@ func (b *Builder) NewBasicLit(
 	}
 }
 
-//
-// func (b *Builder) NewExpressionStmt(
-// 	Right ast.Node,
-// 	SemiColonTkn *token.Token,
-// ) ast.Node {
-// 	return &ast.StmtExpression{
-// 		Pos_:     b.Pos_.NewNodeTokenPos(Right, SemiColonTkn),
-// 		Right:         Right,
-// 		SemiColonTkn: SemiColonTkn,
-// 	}
-// }
-//
-
 func (b *Builder) NewVariable(
 	VariableTkn *token.Token,
 ) *ast.Variable {
@@ -319,32 +306,3 @@ func (b *Builder) NewIdentifier(
 		Value:         IdentifierTkn.Value,
 	}
 }
-
-//
-// func (b *Builder) NewMethodCall(
-// 	Right ast.Node,
-// 	ObjectOperatorTkn *token.Token,
-// 	PropertyName ast.Node,
-// 	ArgList ast.Node,
-// ) *ast.ExprMethodCall {
-// 	argumentList := ArgList.(*ArgumentList)
-// 	methodCall := &ast.ExprMethodCall{
-// 		Pos_:            b.Pos_.NewNodesPos(Right, ArgList),
-// 		Var:                 Right,
-// 		ObjectOperatorTkn:   ObjectOperatorTkn,
-// 		Method:              PropertyName,
-// 		OpenParenthesisTkn:  argumentList.OpenParenthesisTkn,
-// 		Args:                argumentList.Arguments,
-// 		SeparatorTkns:       argumentList.SeparatorTkns,
-// 		EllipsisTkn:         argumentList.EllipsisTkn,
-// 		CloseParenthesisTkn: argumentList.CloseParenthesisTkn,
-// 	}
-//
-// 	if brackets, ok := PropertyName.(*ParserBrackets); ok {
-// 		methodCall.OpenCurlyBracketTkn = brackets.OpenBracketTkn
-// 		methodCall.Method = brackets.Child
-// 		methodCall.CloseCurlyBracketTkn = brackets.CloseBracketTkn
-// 	}
-//
-// 	return methodCall
-// }

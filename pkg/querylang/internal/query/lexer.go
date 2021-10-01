@@ -126,11 +126,3 @@ func (lex *Lexer) isNotNewLine() bool {
 
 	return lex.data[lex.p-1] != '\n' && lex.data[lex.p-1] != '\r'
 }
-
-func isValidVarNameStart(r byte) bool {
-	return (r >= 'A' && r <= 'Z') || (r >= 'a' && r <= 'z') || r == '_' || r >= 0x80
-}
-
-func isValidVarName(r byte) bool {
-	return (r >= 'A' && r <= 'Z') || (r >= 'a' && r <= 'z') || (r >= '0' && r <= '9') || r == '_' || r >= 0x80
-}

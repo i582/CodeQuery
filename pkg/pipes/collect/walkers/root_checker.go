@@ -9,7 +9,6 @@ import (
 	"github.com/VKCOM/noverify/src/ir/irutil"
 	"github.com/VKCOM/noverify/src/linter"
 	"github.com/VKCOM/noverify/src/meta"
-	"github.com/VKCOM/noverify/src/phpdoc"
 	"github.com/VKCOM/noverify/src/solver"
 	"github.com/VKCOM/noverify/src/types"
 	"github.com/i582/CodeQuery/pkg/pipes/collect/symbols"
@@ -88,53 +87,7 @@ func (r *RootChecker) AfterEnterNode(n ir.Node) {
 		r.handlePropertyFetch(n, nil, irutil.NodePath{})
 	case *ir.ImportExpr:
 		r.handleImportExpr(n)
-
-	case *ir.ClassStmt:
-		r.handleClass(n.ClassName, n.Stmts, n.Doc)
-	case *ir.InterfaceStmt:
-		r.handleClass(n.InterfaceName, n.Stmts, n.Doc)
-	case *ir.TraitStmt:
-		r.handleClass(n.TraitName, n.Stmts, n.Doc)
-	case *ir.FunctionStmt:
-		r.handleFunction(n.FunctionName, n.Doc)
 	}
-}
-
-func (r *RootChecker) handleFunction(name *ir.Identifier, doc phpdoc.Comment) {
-	// classFQN := namegen.FunctionFQN(r.state, name.Value)
-	// class, ok := r.globalCtx.Nodes.Get(classFQN)
-	// if !ok {
-	// 	return
-	// }
-
-}
-
-func (r *RootChecker) handleClassMethods(name string, stmts []ir.Node) {
-	// for _, stmt := range stmts {
-	// 	methodNode, ok := stmt.(*ir.ClassMethodStmt)
-	// 	if !ok {
-	// 		continue
-	// 	}
-	//
-	// 	methodFQN := namegen.Method(name, methodNode.MethodName.Value)
-	//
-	// 	method, ok := r.globalCtx.Nodes.Get(methodFQN)
-	// 	if !ok {
-	// 		continue
-	// 	}
-	//
-	//
-	// }
-}
-
-func (r *RootChecker) handleClass(name *ir.Identifier, stmts []ir.Node, doc phpdoc.Comment) {
-	// classFQN := namegen.ClassFQN(r.state, name.Value)
-	// class, ok := r.globalCtx.Classes.Get(classFQN)
-	// if !ok {
-	// 	return
-	// }
-	//
-	// r.handleClassMethods(classFQN, stmts, colors)
 }
 
 func (r *RootChecker) handlePropertyFetch(n *ir.PropertyFetchExpr, blockScope *meta.Scope, nodePath irutil.NodePath) {
